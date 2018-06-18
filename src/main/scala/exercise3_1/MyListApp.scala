@@ -1,0 +1,40 @@
+package exercise3_1
+
+object MyListApp {
+
+  sealed trait MyList[+A]
+  case object MyNil extends MyList[Nothing]
+  case class Cons[+A](head: A, tail: MyList[A]) extends MyList[A]
+
+  object MyList {
+    def sum(ints: MyList[Int]): Int = ints match {
+      case MyNil => 0
+      case Cons(x, xs) => x + sum(xs)
+    }
+
+    def product(ints: MyList[Int]): Int = ints match {
+      case MyNil => 1
+      case Cons(0.0, _) => 0
+      case Cons(x, xs) => x * product(xs)
+    }
+
+    def apply[A](as: A*): MyList[A] =
+      if (as.isEmpty) MyNil
+      else Cons(as.head, apply(as.tail: _*))
+  }
+
+  def main(args: Array[String]): Unit = {
+    import MyList._
+
+    val res = MyList(1,2,3,4,5) match {
+      case Cons(x, Cons(2, Cons(4, _))) => x
+      case MyNil => 42
+      case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => x + y
+      case Cons(h, t) => h + sum(t)
+      case _ => 101
+    }
+
+    println(res)
+
+  }
+}
