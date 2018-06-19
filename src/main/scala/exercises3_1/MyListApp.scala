@@ -40,6 +40,14 @@ object MyListApp {
         }
       }
     }
+
+    // Ex3_4. Generalize tail to the function drop, which removes the first n elements from a list.
+    def drop[A](as: MyList[A], n: Int): MyList[A] = as match {
+      case MyNil => MyNil
+      case Cons(_, xs) =>
+        if (n == 1) xs
+        else drop(xs, n - 1)
+    }
   }
 
   def main(args: Array[String]): Unit = {

@@ -103,5 +103,35 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when drop invoked") {
+      describe("for empty MyList") {
+        describe("and 1 as a number of elements to drop") {
+          it("should return MyNil") {
+            assert(MyList.drop(MyList(), 1) === MyNil)
+          }
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        describe("and 1 as a number of elements to drop") {
+          it("should return MyList(2, 3)") {
+            assert(MyList.drop(MyList(1, 2, 3), 1) === MyList(2, 3))
+          }
+        }
+
+        describe("and 3 as a number of elements to drop") {
+          it("should return MyNil") {
+            assert(MyList.drop(MyList(1, 2, 3), 3) === MyNil)
+          }
+        }
+
+        describe("and 10 as a number of elements to drop") {
+          it("should return MyNil") {
+            assert(MyList.drop(MyList(1, 2, 3), 10) === MyNil)
+          }
+        }
+      }
+    }
   }
 }
