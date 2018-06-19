@@ -24,7 +24,7 @@ object MyListApp {
 
     // Ex3_2. Implement the function tail for removing the first element of a List. Note that the
     // function takes constant time.
-    def tail(anys: MyList[Any]): MyList[Any] = anys match {
+    def tail[A](as: MyList[A]): MyList[A] = as match {
       case MyNil => MyNil
       case Cons(_, xs) => xs
     }
