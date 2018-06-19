@@ -48,6 +48,15 @@ object MyListApp {
         if (n == 1) xs
         else drop(xs, n - 1)
     }
+
+    // Ex3_5. Implement dropWhile, which removes elements from the List prefix as long as they
+    // match a predicate.
+    def dropWhile[A](l: MyList[A], f: A => Boolean): MyList[A] = l match {
+      case MyNil => MyNil
+      case Cons(x, xs) =>
+        if (f(x)) dropWhile(xs, f)
+        else l
+    }
   }
 
   def main(args: Array[String]): Unit = {
