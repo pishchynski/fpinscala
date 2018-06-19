@@ -28,6 +28,18 @@ object MyListApp {
       case MyNil => MyNil
       case Cons(_, xs) => xs
     }
+
+    // Ex3_3. Using the same idea, implement the function setHead for replacing the first element
+    // of a MyList with a different value.
+    def setHead[A](as: MyList[A], h: A): MyList[A] = {
+      if (h == MyNil) MyNil
+      else {
+        as match {
+          case MyNil => MyList(h)
+          case Cons(_, xs) => Cons(h, xs)
+        }
+      }
+    }
   }
 
   def main(args: Array[String]): Unit = {
