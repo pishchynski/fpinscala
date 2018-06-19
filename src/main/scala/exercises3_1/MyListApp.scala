@@ -1,4 +1,4 @@
-package exercise3_1
+package exercises3_1
 
 object MyListApp {
 
@@ -21,11 +21,19 @@ object MyListApp {
     def apply[A](as: A*): MyList[A] =
       if (as.isEmpty) MyNil
       else Cons(as.head, apply(as.tail: _*))
+
+    // Ex3_2. Implement the function tail for removing the first element of a List. Note that the
+    // function takes constant time.
+    def tail(anys: MyList[Any]): MyList[Any] = anys match {
+      case MyNil => MyNil
+      case Cons(_, xs) => xs
+    }
   }
 
   def main(args: Array[String]): Unit = {
     import MyList._
 
+    // Ex3_1. What will be the result of the following match expression?
     val res = MyList(1,2,3,4,5) match {
       case Cons(x, Cons(2, Cons(4, _))) => x
       case MyNil => 42
