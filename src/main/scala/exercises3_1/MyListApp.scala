@@ -24,17 +24,17 @@ object MyListApp {
 
     // Ex3_2. Implement the function tail for removing the first element of a List. Note that the
     // function takes constant time.
-    def tail[A](as: MyList[A]): MyList[A] = as match {
+    def tail[A](l: MyList[A]): MyList[A] = l match {
       case MyNil => MyNil
       case Cons(_, xs) => xs
     }
 
     // Ex3_3. Using the same idea, implement the function setHead for replacing the first element
     // of a MyList with a different value.
-    def setHead[A](as: MyList[A], h: A): MyList[A] = {
+    def setHead[A](l: MyList[A], h: A): MyList[A] = {
       if (h == MyNil) MyNil
       else {
-        as match {
+        l match {
           case MyNil => MyList(h)
           case Cons(_, xs) => Cons(h, xs)
         }
@@ -42,7 +42,7 @@ object MyListApp {
     }
 
     // Ex3_4. Generalize tail to the function drop, which removes the first n elements from a list.
-    def drop[A](as: MyList[A], n: Int): MyList[A] = as match {
+    def drop[A](l: MyList[A], n: Int): MyList[A] = l match {
       case MyNil => MyNil
       case Cons(_, xs) =>
         if (n == 1) xs
