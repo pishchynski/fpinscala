@@ -65,6 +65,18 @@ object MyListApp {
       case Cons(_, MyNil) => MyNil
       case Cons(x, xs) => Cons(x, init(xs))
     }
+
+    // Lst3_2. Right folds and simple uses
+    def foldRight[A,B](as: MyList[A], z: B)(f: (A, B) => B): B = as match {
+        case MyNil => z
+        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+      }
+
+    def sum2(ns: MyList[Int]): Int =
+      foldRight(ns, 0)((x,y) => x + y)
+
+    def product2(ns: MyList[Double]): Double =
+      foldRight(ns, 1.0)(_ * _)
   }
 
   def main(args: Array[String]): Unit = {
