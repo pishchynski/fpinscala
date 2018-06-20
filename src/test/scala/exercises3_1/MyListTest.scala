@@ -138,7 +138,7 @@ class MyListTest extends FunSpec {
       describe("for empty MyList") {
         describe("and x => x == MyNil as a predicate") {
           it("should return MyNil") {
-            assert(MyList.dropWhile[Any](MyList(), x => x == MyNil) === MyNil)
+            assert(MyList.dropWhile[Any](MyList())(x => x == MyNil) === MyNil)
           }
         }
       }
@@ -146,13 +146,13 @@ class MyListTest extends FunSpec {
       describe("for MyList(1, 2, 3)") {
         describe("and x => x < 3 as a predicate") {
           it("should return MyList(3)") {
-            assert(MyList.dropWhile[Int](MyList(1, 2, 3), x => x < 3) === MyList(3))
+            assert(MyList.dropWhile(MyList(1, 2, 3))(x => x < 3) === MyList(3))
           }
         }
 
         describe("and x => x < 5 as a predicate") {
           it("should return MyNil)") {
-            assert(MyList.dropWhile[Int](MyList(1, 2, 3), x => x < 5) === MyNil)
+            assert(MyList.dropWhile(MyList(1, 2, 3))(x => x < 5) === MyNil)
           }
         }
       }
