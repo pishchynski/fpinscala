@@ -96,6 +96,10 @@ object MyListApp {
 
     def product3(ns: MyList[Double]): Double =
       foldLeft(ns, 1.0)(_ * _)
+
+    def length3[A](ns: MyList[A]): Int = {
+      foldLeft(ns, 0)((x, _) => x + 1)
+    }
   }
 
   def main(args: Array[String]): Unit = {

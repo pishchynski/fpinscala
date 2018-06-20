@@ -237,5 +237,25 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when length3 invoked") {
+      describe("for empty MyList") {
+        it("should return 0") {
+          assert(MyList.length3(MyList()) === 0)
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        it("should return 3") {
+          assert(MyList.length3(MyList(1, 2, 3)) === 3)
+        }
+      }
+
+      describe("for MyList(1)") {
+        it("should return 1") {
+          assert(MyList.length3(MyList(1)) === 1)
+        }
+      }
+    }
   }
 }
