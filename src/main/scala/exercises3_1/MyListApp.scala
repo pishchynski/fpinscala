@@ -100,6 +100,17 @@ object MyListApp {
     def length3[A](ns: MyList[A]): Int = {
       foldLeft(ns, 0)((x, _) => x + 1)
     }
+
+    // Ex3_12. Write a function that returns the reverse of a list.
+    def reversed[A](ns: MyList[A]): MyList[A] = {
+      @tailrec
+      def go(ol: MyList[A], nl: MyList[A]) : MyList[A] = ol match {
+        case MyNil => nl
+        case Cons(x, xs) => go(xs, Cons(x, nl))
+      }
+
+      go(ns, MyList())
+    }
   }
 
   def main(args: Array[String]): Unit = {
