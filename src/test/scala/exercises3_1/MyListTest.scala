@@ -271,5 +271,19 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when reversed2 invoked") {
+      describe("for empty MyList") {
+        it("should return MyNil") {
+          assert(MyList.reversed2(MyList()) === MyNil)
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        it("should return MyList(3, 2, 1)") {
+          assert(MyList.reversed2(MyList(1, 2, 3)) === MyList(3, 2, 1))
+        }
+      }
+    }
   }
 }

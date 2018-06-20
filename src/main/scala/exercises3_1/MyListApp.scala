@@ -111,6 +111,10 @@ object MyListApp {
 
       go(ns, MyList())
     }
+
+    def reversed2[A](ns: MyList[A]): MyList[A] = {
+      foldLeft(ns, MyList[A]())((x, y) => Cons(y, x))
+    }
   }
 
   def main(args: Array[String]): Unit = {
