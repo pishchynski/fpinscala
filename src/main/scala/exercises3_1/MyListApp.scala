@@ -77,6 +77,11 @@ object MyListApp {
 
     def product2(ns: MyList[Double]): Double =
       foldRight(ns, 1.0)(_ * _)
+
+    // Ex3_9. Compute the length of a list using foldRight.
+    def length[A](as: MyList[A]): Int = {
+      foldRight(as, 0)((_, y) => y + 1)
+    }
   }
 
   def main(args: Array[String]): Unit = {
