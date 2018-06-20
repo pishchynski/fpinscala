@@ -157,5 +157,25 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when init invoked") {
+      describe("for empty MyList") {
+        it("should return MyNil") {
+          assert(MyList.init(MyList()) === MyNil)
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        it("should return MyList(3)") {
+          assert(MyList.init(MyList(1, 2, 3)) === MyList(1, 2))
+        }
+      }
+
+      describe("for MyList(1)") {
+        it("should return MyNil") {
+          assert(MyList.init(MyList(1)) === MyNil)
+        }
+      }
+    }
   }
 }

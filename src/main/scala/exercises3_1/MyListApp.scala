@@ -57,6 +57,14 @@ object MyListApp {
         if (f(x)) dropWhile(xs, f)
         else l
     }
+
+    // Ex3_6. Implement a function, init, that returns a List consisting of all
+    // but the last element of a List.
+    def init[A](l: MyList[A]): MyList[A] = l match {
+      case MyNil => MyNil
+      case Cons(_, MyNil) => MyNil
+      case Cons(x, xs) => Cons(x, init(xs))
+    }
   }
 
   def main(args: Array[String]): Unit = {
