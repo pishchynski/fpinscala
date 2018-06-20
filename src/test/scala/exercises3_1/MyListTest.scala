@@ -209,5 +209,33 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when sum3 invoked") {
+      describe("for empty MyList") {
+        it("should return 0") {
+          assert(MyList.sum3(MyList()) === 0)
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        it("should return 6") {
+          assert(MyList.sum3(MyList(1, 2, 3)) === 6)
+        }
+      }
+    }
+
+    describe("when product3 invoked") {
+      describe("for empty MyList") {
+        it("should return 0") {
+          assert(MyList.product3(MyList()) === 1)
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        it("should return 6") {
+          assert(MyList.product3(MyList(1, 2, 3)) === 6)
+        }
+      }
+    }
   }
 }
