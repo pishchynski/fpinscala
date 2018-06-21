@@ -297,5 +297,31 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when append invoked") {
+      describe("for empty MyList") {
+        describe("and MyList(1) to append") {
+          it("should return MyList(1)") {
+            assert(MyList.append(MyList(), MyList(1)) === MyList(1))
+          }
+        }
+
+        describe("""and "one" to append""") {
+          describe("""and MyList("one") to append""") {
+            it("""should return MyList("one")""") {
+              assert(MyList.append(MyList(), MyList("one")) === MyList("one"))
+            }
+          }
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        describe("and MyList(9, 10) to append") {
+          it("should return MyList(1, 2, 3, 9, 10)") {
+            assert(MyList.append(MyList(1, 2, 3), MyList(9, 10)) === MyList(1, 2, 3, 9, 10))
+          }
+        }
+      }
+    }
   }
 }

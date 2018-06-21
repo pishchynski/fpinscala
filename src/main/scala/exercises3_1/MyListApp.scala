@@ -120,6 +120,18 @@ object MyListApp {
     def foldRightViaLeft[A,B](as: MyList[A], z: B)(f: (A, B) => B): B = {
       foldLeft(reversed2(as), z)((x, y) => f(y, x))
     }
+
+    // Ex3_14. Implement append in terms of either foldLeft or foldRight.
+    def append[A](l: MyList[A], r: MyList[A]): MyList[A] = {
+      foldRight(l, r)(Cons(_, _))
+    }
+
+    // Ex3_15. Write a function that concatenates a list of lists into a single list. Its runtime
+    // should be linear in the total length of all lists. Try to use functions we have already
+    // defined.
+//    def flatten[A](ls: MyList[MyList[A]]): MyList[A] ={
+//
+//    }
   }
 
   def main(args: Array[String]): Unit = {
