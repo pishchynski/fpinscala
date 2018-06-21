@@ -323,5 +323,19 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when flatten invoked") {
+      describe("for two empty lists") {
+        it("should return MyNil") {
+          assert(MyList.append(MyList(), MyList()) === MyNil)
+        }
+      }
+
+      describe("for MyList(1, 2, 3) and MyList(4, 5, 6)") {
+        it("should return MyList(1, 2, 3, 4, 5, 6)") {
+          assert(MyList.append(MyList(1, 2, 3), MyList(4, 5, 6)) === MyList(1, 2, 3, 4, 5, 6))
+        }
+      }
+    }
   }
 }

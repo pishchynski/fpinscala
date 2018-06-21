@@ -129,9 +129,9 @@ object MyListApp {
     // Ex3_15. Write a function that concatenates a list of lists into a single list. Its runtime
     // should be linear in the total length of all lists. Try to use functions we have already
     // defined.
-//    def flatten[A](ls: MyList[MyList[A]]): MyList[A] ={
-//
-//    }
+    def flatten[A](ls: MyList[MyList[A]]): MyList[A] = {
+      foldRight(ls, MyList[A]())((x, y) => append(x, y))
+    }
   }
 
   def main(args: Array[String]): Unit = {
