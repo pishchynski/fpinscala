@@ -132,6 +132,11 @@ object MyListApp {
     def flatten[A](ls: MyList[MyList[A]]): MyList[A] = {
       foldRight(ls, MyList[A]())((x, y) => append(x, y))
     }
+
+    // Ex3_16. Write a function that transforms a list of integers by adding 1 to each element.
+    def addOne(ls: MyList[Int]): MyList[Int] = {
+      foldRight(ls, MyList[Int]())((x, y) => Cons(x + 1, y))
+    }
   }
 
   def main(args: Array[String]): Unit = {
