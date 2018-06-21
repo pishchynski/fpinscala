@@ -285,5 +285,17 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when foldLeftWithRight invoked") {
+      describe("for MyList(1, 2, 3)") {
+        describe("and MyNil as a first element") {
+          describe("and Cons(_, _) as a function to be applied") {
+            it("should return MyList(1, 2, 3)") {
+              assert(MyList.foldRightViaLeft(MyList(1,2,3), MyNil: MyList[Int])(Cons(_,_)) === MyList(1, 2, 3))
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -115,6 +115,11 @@ object MyListApp {
     def reversed2[A](ns: MyList[A]): MyList[A] = {
       foldLeft(ns, MyList[A]())((x, y) => Cons(y, x))
     }
+
+    // Ex3_13. Can you write foldRight in terms of foldLeft?
+    def foldRightViaLeft[A,B](as: MyList[A], z: B)(f: (A, B) => B): B = {
+      foldLeft(reversed2(as), z)((x, y) => f(y, x))
+    }
   }
 
   def main(args: Array[String]): Unit = {
