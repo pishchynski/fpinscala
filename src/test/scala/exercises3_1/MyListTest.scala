@@ -401,5 +401,23 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when flatMap invoked") {
+      describe("for empty MyList") {
+        describe("and function x => MyList(x, x)") {
+          it("should return MyNil") {
+            assert(MyList.flatMap[Int, Int](MyList())(x => MyList(x, x)) === MyNil)
+          }
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        describe("and function x => MyList(x, x)") {
+          it("should return MyList(1, 1, 2, 2, 3, 3)") {
+            assert(MyList.flatMap(MyList(1, 2, 3))(x => MyList(x, x)) === MyList(1, 1, 2, 2, 3, 3))
+          }
+        }
+      }
+    }
   }
 }

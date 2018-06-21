@@ -154,6 +154,13 @@ object MyListApp {
     def filter[A](as: MyList[A])(f: A => Boolean): MyList[A] = {
       foldRight(as, MyList[A]())((x, y) => if (f(x)) Cons(x, y) else y)
     }
+
+    // Ex3_20. Write a function flatMap that works like map except that the function given will return
+    // a list instead of a single result, and that list should be inserted into the final resulting
+    // list.
+    def flatMap[A,B](as: MyList[A])(f: A => MyList[B]): MyList[B] = {
+      foldRight(as, MyList[B]())((x, y) => append(f(x), y))
+    }
   }
 
   def main(args: Array[String]): Unit = {
