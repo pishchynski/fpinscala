@@ -134,8 +134,8 @@ object MyListApp {
     }
 
     // Ex3_16. Write a function that transforms a list of integers by adding 1 to each element.
-    def addOne(ls: MyList[Int]): MyList[Int] = {
-      foldRight(ls, MyList[Int]())((x, y) => Cons(x + 1, y))
+    def addOne(l: MyList[Int]): MyList[Int] = {
+      foldRight(l, MyList[Int]())((x, y) => Cons(x + 1, y))
     }
   }
 
