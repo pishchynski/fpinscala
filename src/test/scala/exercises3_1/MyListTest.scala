@@ -351,5 +351,19 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when fromDoubleToString invoked") {
+      describe("for empty MyList") {
+        it("should return MyNil") {
+          assert(MyList.fromDoubleToString(MyList[Double]()) === MyNil)
+        }
+      }
+
+      describe("for MyList(1.0, 2.22, 3.14)") {
+        it("""should return MyList("1.0", "2.22", "3.14")""") {
+          assert(MyList.fromDoubleToString(MyList(1.0, 2.22, 3.14)) === MyList("1.0", "2.22", "3.14"))
+        }
+      }
+    }
   }
 }

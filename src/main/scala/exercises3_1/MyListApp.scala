@@ -137,6 +137,11 @@ object MyListApp {
     def addOne(l: MyList[Int]): MyList[Int] = {
       foldRight(l, MyList[Int]())((x, y) => Cons(x + 1, y))
     }
+
+    // Ex3_17. Write a function that turns each value in a MyList[Double] into a String.
+    def fromDoubleToString(l: MyList[Double]): MyList[String] = {
+      foldRight(l, MyList[String]())((x, y) => Cons(x.toString, y))
+    }
   }
 
   def main(args: Array[String]): Unit = {
