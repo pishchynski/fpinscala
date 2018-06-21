@@ -365,5 +365,23 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when map invoked") {
+      describe("for empty MyList") {
+        describe("and function x => x + 1") {
+          it("should return MyNil") {
+            assert(MyList.map[Int, Int](MyList())(x => x + 1) === MyNil)
+          }
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        describe("and function x => x * x") {
+          it("should return MyList(1, 4, 9)") {
+            assert(MyList.map(MyList(1, 2, 3))(x => x * x) === MyList(1, 4, 9))
+          }
+        }
+      }
+    }
   }
 }

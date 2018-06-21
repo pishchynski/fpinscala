@@ -142,6 +142,12 @@ object MyListApp {
     def fromDoubleToString(l: MyList[Double]): MyList[String] = {
       foldRight(l, MyList[String]())((x, y) => Cons(x.toString, y))
     }
+
+    // Ex3_18. Write a function map that generalizes modifying each element in a list while maintaining
+    // the structure of the list.
+    def map[A,B](as: MyList[A])(f: A => B): MyList[B] = {
+      foldRight(as, MyList[B]())((x, y) => Cons(f(x), y))
+    }
   }
 
   def main(args: Array[String]): Unit = {
