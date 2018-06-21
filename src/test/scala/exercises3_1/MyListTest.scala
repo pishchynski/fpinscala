@@ -383,5 +383,23 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when filter invoked") {
+      describe("for empty MyList") {
+        describe("and x => x != MyNil as a predicate") {
+          it("should return MyNil") {
+            assert(MyList.filter[Any](MyList())(x => x != MyNil) === MyNil)
+          }
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        describe("and x => x < 3 as a predicate") {
+          it("should return MyList(1, 2)") {
+            assert(MyList.filter(MyList(1, 2, 3))(x => x < 3) === MyList(1, 2))
+          }
+        }
+      }
+    }
   }
 }

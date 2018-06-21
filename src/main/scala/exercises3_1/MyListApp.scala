@@ -148,6 +148,12 @@ object MyListApp {
     def map[A,B](as: MyList[A])(f: A => B): MyList[B] = {
       foldRight(as, MyList[B]())((x, y) => Cons(f(x), y))
     }
+
+    // Ex3_19. Write a function filter that removes elements from a list unless they satisfy a given
+    // predicate.
+    def filter[A](as: MyList[A])(f: A => Boolean): MyList[A] = {
+      foldRight(as, MyList[A]())((x, y) => if (f(x)) Cons(x, y) else y)
+    }
   }
 
   def main(args: Array[String]): Unit = {
