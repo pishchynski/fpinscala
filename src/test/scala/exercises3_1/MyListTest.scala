@@ -419,5 +419,47 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when filter2 invoked") {
+      describe("for empty MyList") {
+        describe("and x => x != MyNil as a predicate") {
+          it("should return MyNil") {
+            assert(MyList.filter2[Any](MyList())(x => x != MyNil) === MyNil)
+          }
+        }
+      }
+
+      describe("for MyList(1, 2, 3)") {
+        describe("and x => x < 3 as a predicate") {
+          it("should return MyList(1, 2)") {
+            assert(MyList.filter2(MyList(1, 2, 3))(x => x < 3) === MyList(1, 2))
+          }
+        }
+      }
+    }
+
+    describe("when plus invoked") {
+      describe("for MyList(1, 2, 3)") {
+        describe("and MyList(4, 5, 6)") {
+          it("should return MyList(5, 7, 9)") {
+            assert(MyList.plus(MyList(1, 2, 3), MyList(4, 5, 6)) === MyList(5, 7, 9))
+          }
+        }
+
+        describe("and MyList(4, 5)") {
+          it("should throw IndexOutOfBoundException") {
+            assertThrows[IndexOutOfBoundsException](MyList.plus(MyList(1, 2, 3), MyList(4, 5)))
+          }
+        }
+      }
+
+      describe("for MyList(1, 2)") {
+        describe("and MyList(4, 5, 6)") {
+          it("should throw IndexOutOfBoundException") {
+            assertThrows[IndexOutOfBoundsException](MyList.plus(MyList(1, 2), MyList(4, 5, 6)))
+          }
+        }
+      }
+    }
   }
 }

@@ -69,13 +69,13 @@ object MyListApp {
     }
 
     // Lst3_2. Right folds and simple uses
-    def foldRight[A,B](as: MyList[A], z: B)(f: (A, B) => B): B = as match {
-        case MyNil => z
-        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
-      }
+    def foldRight[A, B](as: MyList[A], z: B)(f: (A, B) => B): B = as match {
+      case MyNil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
 
     def sum2(ns: MyList[Int]): Int =
-      foldRight(ns, 0)((x,y) => x + y)
+      foldRight(ns, 0)((x, y) => x + y)
 
     def product2(ns: MyList[Double]): Double =
       foldRight(ns, 1.0)(_ * _)
@@ -86,13 +86,13 @@ object MyListApp {
     }
 
     @tailrec
-    def foldLeft[A,B](as: MyList[A], z: B)(f: (B, A) => B): B = as match {
+    def foldLeft[A, B](as: MyList[A], z: B)(f: (B, A) => B): B = as match {
       case MyNil => z
       case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
     }
 
     def sum3(ns: MyList[Int]): Int =
-      foldLeft(ns, 0)((x,y) => x + y)
+      foldLeft(ns, 0)((x, y) => x + y)
 
     def product3(ns: MyList[Double]): Double =
       foldLeft(ns, 1.0)(_ * _)
@@ -104,7 +104,7 @@ object MyListApp {
     // Ex3_12. Write a function that returns the reverse of a list.
     def reversed[A](ns: MyList[A]): MyList[A] = {
       @tailrec
-      def go(ol: MyList[A], nl: MyList[A]) : MyList[A] = ol match {
+      def go(ol: MyList[A], nl: MyList[A]): MyList[A] = ol match {
         case MyNil => nl
         case Cons(x, xs) => go(xs, Cons(x, nl))
       }
@@ -117,7 +117,7 @@ object MyListApp {
     }
 
     // Ex3_13. Can you write foldRight in terms of foldLeft?
-    def foldRightViaLeft[A,B](as: MyList[A], z: B)(f: (A, B) => B): B = {
+    def foldRightViaLeft[A, B](as: MyList[A], z: B)(f: (A, B) => B): B = {
       foldLeft(reversed2(as), z)((x, y) => f(y, x))
     }
 
@@ -145,7 +145,7 @@ object MyListApp {
 
     // Ex3_18. Write a function map that generalizes modifying each element in a list while maintaining
     // the structure of the list.
-    def map[A,B](as: MyList[A])(f: A => B): MyList[B] = {
+    def map[A, B](as: MyList[A])(f: A => B): MyList[B] = {
       foldRight(as, MyList[B]())((x, y) => Cons(f(x), y))
     }
 
@@ -158,8 +158,30 @@ object MyListApp {
     // Ex3_20. Write a function flatMap that works like map except that the function given will return
     // a list instead of a single result, and that list should be inserted into the final resulting
     // list.
-    def flatMap[A,B](as: MyList[A])(f: A => MyList[B]): MyList[B] = {
+    def flatMap[A, B](as: MyList[A])(f: A => MyList[B]): MyList[B] = {
       foldRight(as, MyList[B]())((x, y) => append(f(x), y))
+    }
+
+    // Ex3_21. Use flatMap to implement filter.
+    def filter2[A](as: MyList[A])(f: A => Boolean): MyList[A] = {
+      flatMap(as)(x => if (f(x)) MyList(x) else MyNil)
+    }
+
+    // Ex3_22. Write a function that accepts two lists and constructs a new list by adding corresponding
+    // elements.
+    def plus(l: MyList[Int], r: MyList[Int]): MyList[Int] = {
+      def go(l: MyList[Int], r: MyList[Int], nl: MyList[Int]): MyList[Int] = l match {
+        case MyNil => r match {
+          case MyNil => nl
+          case Cons(y, ys) => throw new IndexOutOfBoundsException("shapes of l and r do not match")
+        }
+        case Cons(x, xs) => r match {
+          case MyNil => throw new IndexOutOfBoundsException("shapes of l and r do not match")
+          case Cons(y, ys) => go(xs, ys, Cons(x + y, nl))
+        }
+      }
+
+      reversed2(go(l, r, MyList[Int]()))
     }
   }
 
