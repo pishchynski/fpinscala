@@ -461,5 +461,17 @@ class MyListTest extends FunSpec {
         }
       }
     }
+
+    describe("when zipWith invoked") {
+      describe("for MyList(1, 2, 3)") {
+        describe("and MyList(4, 5, 6)") {
+          describe("and function (x, y) => x * y") {
+            it("should return MyList(4, 10, 18)") {
+              assert(MyList.zipWith(MyList(1, 2, 3), MyList(4, 5, 6))((x, y) => x * y) === MyList(4, 10, 18))
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -183,6 +183,22 @@ object MyListApp {
 
       reversed2(go(l, r, MyList[Int]()))
     }
+
+    // Ex3_23. Generalize the sum function so that it’s not specific to integers or addition.
+    def zipWith[A](l: MyList[A], r: MyList[A])(f: (A, A) => A): MyList[A] = {
+      def go(l: MyList[A], r: MyList[A], nl: MyList[A]): MyList[A] = l match {
+        case MyNil => r match {
+          case MyNil => nl
+          case Cons(y, ys) => throw new IndexOutOfBoundsException("shapes of l and r do not match")
+        }
+        case Cons(x, xs) => r match {
+          case MyNil => throw new IndexOutOfBoundsException("shapes of l and r do not match")
+          case Cons(y, ys) => go(xs, ys, Cons(f(x, y), nl))
+        }
+      }
+
+      reversed2(go(l, r, MyList()))
+    }
   }
 
   def main(args: Array[String]): Unit = {
